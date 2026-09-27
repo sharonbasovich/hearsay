@@ -13,6 +13,13 @@
 
 **No human-subject data was collected or used.** No third-party datasets, recordings or audiograms are included. The app has no server, analytics or tracking; user results are stored only in the browser's `localStorage`.
 
+## AI use disclosure
+
+- **Coding assistant:** the code, tests, docs, screenshots and demo video were produced with the Devin AI coding agent (Cognition), directed and reviewed by Sharon Basovich. UnivaBio explicitly encourages AI assistants.
+- **ElevenLabs:** used once, offline, via `scripts/make-stimuli.ts` (model `eleven_multilingual_v2`, premade voice `Xb7hH8MSUJpSbSDYk0k2`; see `public/stimuli/manifest.json`), for the digits, the hear-through sentence, and the demo-video narration. The deployed site does **not** call ElevenLabs or any other API.
+- **Sponsors:** no sponsor API or product (Momen, CodeCrafters, InterviewBuddy, Protoflow, Adaption Labs, Tin Computer) is used, and the rules do not require one.
+- **"AI" in the app:** Bayesian active-learning inference (grid posterior + expected-entropy stimulus choice), fully client-side. No trained ML model and no LLM at runtime.
+
 ## Safety framing
 
 - Hearsay is an **educational self-check**, not a medical device, screening test or diagnosis. It says so on every page.

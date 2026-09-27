@@ -1,12 +1,20 @@
 # Hearsay
 
-**Tagline:** A 3-minute hearing-in-noise check that finds the family member who's quietly saying "what?" — without pretending your earbuds are calibrated.
+**Tagline:** A 3-minute hearing-in-noise check that finds the family member who's quietly saying "what?", without pretending your earbuds are calibrated.
+
+> **"What?"**
+> **"WHAT?"**
+> **"...never mind."**
+
+That little three-word exchange happens at dinner tables everywhere, and the person who says "never mind" first usually isn't the one with the problem. Understanding speech in noise is often the first part of hearing to slip, and people commonly wait years before getting it checked.
+
+**Hearsay turns that dinner-table moment into a 3-minute game you pass around on one laptop.** Put on headphones, type the three digits you hear through the noise, and hand it to the next person. Hearsay won't tell anyone they're "normal", because a browser can't know how loud your earbuds are. What it *can* tell you honestly is whether one person on the same headphones is clearly struggling more than everyone else.
+
+**Try it:** https://sharonbasovich.github.io/hearsay/ (headphones on; the Lab tab works without them).
 
 ## Inspiration
 
-Every family has a dinner-table moment. Someone tells a story, Grandpa laughs half a second late, and three people repeat the punchline at increasing volume. Nobody says "hearing test," because nobody wants to be *that* relative, and online hearing tests either feel like homework or confidently tell you you're "normal" through $9 earbuds they've never met.
-
-Speech-in-noise is usually the first thing to slip, and it's exactly what those tests skip. I wanted something a family could pass around on one laptop in three minutes, that measures the right thing, and that is honest about what a browser can and can't know.
+Someone tells a story, Grandpa laughs half a second late, and three people repeat the punchline louder and louder. Nobody says "hearing test", because nobody wants to be *that* relative. Online hearing tests feel like homework, or they confidently call you "normal" through $9 earbuds they've never met. I wanted something a family would actually do together, that measures the thing that slips first, and that is upfront about what a browser can and can't know.
 
 ## What it does
 
@@ -58,8 +66,22 @@ A small ethics-approved pilot against a calibrated clinical digits-in-noise test
 
 - Educational self-check, **not a medical device**; not clinically validated; never outputs a diagnosis, category or pass/fail.
 - All validation data is simulated; the demo family is invented and labelled "(synthetic)"; no human-subject data was collected.
-- Speech: ElevenLabs TTS (attributed). Noise, code, charts and profiles: original.
+- Speech: ElevenLabs TTS, generated offline (attributed). Noise, charts and hearing profiles: generated for this project. Code: written with an AI coding agent (see above).
+
+## AI use disclosure
+
+UnivaBio encourages AI assistants, so here's exactly what I used:
+
+- **Devin (Cognition's AI coding agent)** wrote most of the code, tests, docs, screenshots and this demo video, working from my direction and review. The source is organized around the Bayesian engine (`src/engine/bayes.ts`), the family comparison (`src/engine/family.ts`), and the noise and mixing DSP (`src/dsp`, `src/audio/mix.ts`); I will review these modules before judging.
+- **ElevenLabs text-to-speech** was used once, offline, to record the nine digits and the hear-through sentence (`scripts/make-stimuli.ts`, `public/stimuli/manifest.json`), plus the demo-video narration. **The live site makes no ElevenLabs or other API calls**; it only plays the pre-generated files. No sponsor API is used, and none is required by the rules.
+- **The "AI" inside Hearsay** is Bayesian active learning that runs entirely in your browser: a posterior over threshold and slope, where each trial is chosen to maximize expected information. There is no LLM and no trained model at runtime.
+
+## Links
+
+- Live demo: https://sharonbasovich.github.io/hearsay/
+- Source: https://github.com/sharonbasovich/hearsay
+- Provenance and limitations: https://github.com/sharonbasovich/hearsay/blob/main/docs/PROVENANCE.md
 
 ## Built with
 
-typescript · vite · web-audio-api · vitest · elevenlabs · bayesian-inference · github-pages
+typescript · vite · web-audio-api · vitest · elevenlabs · bayesian-inference · github-pages · devin

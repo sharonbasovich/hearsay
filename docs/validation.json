@@ -1,0 +1,109 @@
+{
+  "config": {
+    "listeners": 400,
+    "seed": 7,
+    "trueSlope": 0.7,
+    "trueLapse": 0.02,
+    "srtRange": [
+      -14,
+      2
+    ]
+  },
+  "slopes": [
+    0.5,
+    0.7,
+    1
+  ],
+  "rows": [
+    {
+      "key": "staircase",
+      "method": "Staircase (24 trials)",
+      "trueSlope": 0.5,
+      "rmse": 1.0022775587840453,
+      "bias": 0.29684135329244393,
+      "meanTrials": 24,
+      "coverage90": 0.5475,
+      "retestSd": 1.3852215618846693
+    },
+    {
+      "key": "staircase12",
+      "method": "Staircase (12 trials)",
+      "trueSlope": 0.5,
+      "rmse": 1.8114737897052915,
+      "bias": 1.0180542314052587,
+      "meanTrials": 12,
+      "coverage90": 0.455,
+      "retestSd": 1.7170405059792713
+    },
+    {
+      "key": "bayesian",
+      "method": "Hearsay Bayesian",
+      "trueSlope": 0.5,
+      "rmse": 1.4078038975444052,
+      "bias": -0.21082339121517824,
+      "meanTrials": 12.0925,
+      "coverage90": 0.83,
+      "retestSd": 1.961750780760402
+    },
+    {
+      "key": "staircase",
+      "method": "Staircase (24 trials)",
+      "trueSlope": 0.7,
+      "rmse": 0.7917657301222905,
+      "bias": 0.20874611519720598,
+      "meanTrials": 24,
+      "coverage90": 0.6175,
+      "retestSd": 1.0514729976811628
+    },
+    {
+      "key": "staircase12",
+      "method": "Staircase (12 trials)",
+      "trueSlope": 0.7,
+      "rmse": 1.529704010998765,
+      "bias": 0.8962360495870765,
+      "meanTrials": 12,
+      "coverage90": 0.54,
+      "retestSd": 1.307693382819946
+    },
+    {
+      "key": "bayesian",
+      "method": "Hearsay Bayesian",
+      "trueSlope": 0.7,
+      "rmse": 1.0052780865501367,
+      "bias": -0.14601292476003663,
+      "meanTrials": 11.8075,
+      "coverage90": 0.935,
+      "retestSd": 1.4189038451216716
+    },
+    {
+      "key": "staircase",
+      "method": "Staircase (24 trials)",
+      "trueSlope": 1,
+      "rmse": 0.5734374609962728,
+      "bias": 0.1573175437686344,
+      "meanTrials": 24,
+      "coverage90": 0.695,
+      "retestSd": 0.7955361574295526
+    },
+    {
+      "key": "staircase12",
+      "method": "Staircase (12 trials)",
+      "trueSlope": 1,
+      "rmse": 1.3410380965184308,
+      "bias": 0.7880542314052587,
+      "meanTrials": 12,
+      "coverage90": 0.6275,
+      "retestSd": 1.009239956232509
+    },
+    {
+      "key": "bayesian",
+      "method": "Hearsay Bayesian",
+      "trueSlope": 1,
+      "rmse": 0.7560536625173716,
+      "bias": -0.08251761846490649,
+      "meanTrials": 11.05,
+      "coverage90": 0.98,
+      "retestSd": 1.049934973238383
+    }
+  ]
+}

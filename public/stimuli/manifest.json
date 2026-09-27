@@ -1,0 +1,18 @@
+{
+  "sampleRate": 24000,
+  "voiceId": "Xb7hH8MSUJpSbSDYk0k2",
+  "model": "eleven_multilingual_v2",
+  "generatedAt": "2026-09-27T06:59:17.984Z",
+  "digitDurations": {
+    "0": 0.596,
+    "1": 0.35125,
+    "2": 0.5884583333333333,
+    "3": 0.441,
+    "4": 0.4287916666666667,
+    "5": 0.5542083333333333,
+    "6": 0.534125,
+    "8": 0.405,
+    "9": 0.48020833333333335
+  },
+  "sentence": "Hi Grandpa! I'm picking you up at four fifteen on Thursday. Bring your blue jacket, and don't forget the pharmacy slip for Doctor Patel."
+}

@@ -1,0 +1,23 @@
+{
+  "name": "hearsay",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A 3-minute digits-in-noise hearing check with a Bayesian adaptive engine, same-device family comparison, and a hear-through simulator. Screening-style self-check, not a diagnosis.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "stimuli": "vite-node scripts/make-stimuli.ts",
+    "simulate": "vite-node scripts/simulate.ts"
+  },
+  "devDependencies": {
+    "@types/node": "20.16.10",
+    "typescript": "5.6.3",
+    "vite": "5.4.8",
+    "vite-node": "2.1.2",
+    "vitest": "2.1.2"
+  }
+}

@@ -1,0 +1,37 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+@page { size: Letter; margin: 0.45in; }
+body { font-family: "DejaVu Sans", sans-serif; color:#1f2430; font-size: 9.6pt; line-height:1.35; margin:0; }
+h1 { font-size: 22pt; margin:0; } .tag { color:#e0573b; font-weight:700; font-size:10.5pt; margin:2px 0 8px; }
+h2 { font-size: 11pt; color:#2f6f73; margin:9px 0 3px; border-bottom:1px solid #e7e0d5; padding-bottom:2px; }
+.cols { display:grid; grid-template-columns: 1fr 1fr; gap: 14px; } p { margin: 3px 0; } ul { margin:3px 0; padding-left:16px; } li { margin:1px 0; }
+table { border-collapse: collapse; width:100%; font-size:9pt; } td, th { border-bottom:1px solid #e7e0d5; padding:3px 4px; text-align:right; } td:first-child, th:first-child { text-align:left; } tr.hl td { font-weight:700; background:#f1f8f7; }
+img { width:100%; border:1px solid #e7e0d5; border-radius:6px; } .fine { font-size:8pt; color:#5f6675; }
+.box { background:#fdeee8; border-radius:6px; padding:6px 8px; }
+</style></head><body>
+<h1>Hearsay</h1>
+<div class="tag">A 3-minute hearing-in-noise check that finds the family member quietly saying "what?" — UnivaBio 2026 · AI for Human Health · Sharon Basovich (solo)</div>
+<div class="cols"><div>
+<h2>Problem</h2>
+<p>Understanding speech in noise is often the first hearing ability to slip, and people often wait years before acting. Online hearing tests usually skip speech-in-noise, and they can't know how loud your headphones are — yet many still report a "normal" range.</p>
+<h2>Solution</h2>
+<ul><li><b>Digits-in-noise check</b>: hear 3 spoken digits in speech-shaped noise, type them; antiphasic presentation; a headphone check first.</li>
+<li><b>Bayesian adaptive engine</b> (the AI): posterior over threshold × slope; each next noise level minimizes expected posterior entropy; stops when the 90% credible interval is tight (~12 triplets).</li>
+<li><b>Same-device family board</b>: compares each person with the median of others on the same device, so calibration offsets cancel. Flags only gaps &gt; 3 dB <i>and</i> beyond measurement uncertainty.</li>
+<li><b>Hear-through simulator</b> and a reproducible in-browser <b>Lab</b>.</li></ul>
+<h2>Audience &amp; impact</h2>
+<p>Families and caregivers of older adults, and students exposed to loud music. The output is actionable and non-alarming: "found it noticeably harder than others on this device — worth mentioning to a doctor."</p>
+<h2>Measured results (simulated listeners, n=400, tested twice)</h2>
+<table><tr><th>Procedure</th><th>Triplets</th><th>RMSE</th><th>90% CI coverage</th></tr>
+<tr><td>Staircase, 24 trials</td><td>24</td><td>0.79 dB</td><td>62%</td></tr>
+<tr><td>Staircase, 12 trials</td><td>12</td><td>1.53 dB</td><td>54%</td></tr>
+<tr class="hl"><td>Hearsay Bayesian</td><td>11.8</td><td>1.01 dB</td><td>94%</td></tr></table>
+<p class="fine">~34% lower error than a staircase of the same length; half the trials of the classic track, which remains slightly more precise.</p>
+</div><div>
+<img src="screenshots/07-family-board.png" style="max-height:3.1in;object-fit:cover;object-position:top">
+<img src="screenshots/05-test-live-belief.png" style="margin-top:6px;max-height:2.2in;object-fit:cover;object-position:top">
+<h2>Built</h2>
+<p>TypeScript, Vite, Web Audio API, hand-written FFT, Vitest (32 tests). No backend; results stay in the browser.</p>
+<h2>Honesty</h2>
+<div class="box"><p><b>Not a medical device; not a diagnosis; not clinically validated.</b> Validation uses simulated listeners only. Demo family is invented and labelled. Speech synthesized with ElevenLabs TTS; noise generated locally. No human-subject data. Planned next: ethics-approved pilot against a calibrated clinical test.</p></div>
+</div></div>
+</body></html>

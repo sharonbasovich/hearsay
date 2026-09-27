@@ -64,6 +64,10 @@ npm run simulate   # regenerates docs/validation.json
 
 Regenerating the speech (`npm run stimuli`) needs an `ELEVENLABS_API_KEY`; the generated WAVs are already committed.
 
+## AI use
+
+Built with the Devin AI coding agent, directed and reviewed by Sharon Basovich. ElevenLabs TTS was used once, offline, to generate the speech assets and demo narration; the live site makes no API calls. No sponsor APIs are used. Details: [docs/PROVENANCE.md](docs/PROVENANCE.md#ai-use-disclosure).
+
 ## License
 
 Code: MIT. Speech audio: synthesized with [ElevenLabs](https://elevenlabs.io); see [`docs/PROVENANCE.md`](docs/PROVENANCE.md).

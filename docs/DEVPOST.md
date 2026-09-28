@@ -10,7 +10,7 @@ That little three-word exchange happens at dinner tables everywhere, and the per
 
 **Hearsay turns that dinner-table moment into a 3-minute game you pass around on one laptop.** Put on headphones, type the three digits you hear through the noise, and hand it to the next person. Hearsay won't tell anyone they're "normal", because a browser can't know how loud your earbuds are. What it *can* tell you honestly is whether one person on the same headphones is clearly struggling more than everyone else.
 
-**Try it:** https://sharonbasovich.github.io/hearsay/ (headphones on; the Lab tab works without them).
+**Try it:** https://sharonbasovich.github.io/hearsay/ (headphones on; the Lab tab works without them). **Watch the 2-minute demo:** https://sharonbasovich.github.io/hearsay/video/
 
 ## Inspiration
 
@@ -79,6 +79,7 @@ UnivaBio encourages AI assistants, so here's exactly what I used:
 ## Links
 
 - Live demo: https://sharonbasovich.github.io/hearsay/
+- Demo video (2:20): https://sharonbasovich.github.io/hearsay/video/
 - Source: https://github.com/sharonbasovich/hearsay
 - Provenance and limitations: https://github.com/sharonbasovich/hearsay/blob/main/docs/PROVENANCE.md
 

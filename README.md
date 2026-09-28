@@ -9,7 +9,7 @@ Because home headphones are never calibrated, Hearsay **does not show a fake "no
 **Hearsay is not a medical device and does not diagnose anything.** It has not been clinically validated.
 
 - Live demo: https://sharonbasovich.github.io/hearsay/ (or run locally, below)
-- Demo video (2:16): [`docs/hearsay-demo.mp4`](docs/hearsay-demo.mp4)
+- Demo video (2:20): watch at https://sharonbasovich.github.io/hearsay/video/ (source file: [`docs/hearsay-demo.mp4`](docs/hearsay-demo.mp4))
 - Devpost write-up: [`docs/DEVPOST.md`](docs/DEVPOST.md)
 - One-page summary: [`docs/hearsay-one-pager.pdf`](docs/hearsay-one-pager.pdf)
 - Source code PDF: [`docs/hearsay-source-code.pdf`](docs/hearsay-source-code.pdf)

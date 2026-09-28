@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc --noEmit && vite build",
+    "build": "tsc --noEmit && vite build && cp docs/hearsay-demo.mp4 dist/video/hearsay-demo.mp4",
     "preview": "vite preview",
     "test": "vitest run",
     "typecheck": "tsc --noEmit",

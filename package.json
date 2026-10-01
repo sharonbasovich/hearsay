@@ -11,7 +11,8 @@
     "test": "vitest run",
     "typecheck": "tsc --noEmit",
     "stimuli": "vite-node scripts/make-stimuli.ts",
-    "simulate": "vite-node scripts/simulate.ts"
+    "simulate": "vite-node scripts/simulate.ts",
+    "export:pdfs": "node scripts/export-pdfs.mjs"
   },
   "devDependencies": {
     "@types/node": "20.16.10",

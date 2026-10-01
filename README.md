@@ -13,6 +13,7 @@ Because home headphones are never calibrated, Hearsay **does not show a fake "no
 - Devpost write-up: [`docs/DEVPOST.md`](docs/DEVPOST.md)
 - One-page summary: [`docs/hearsay-one-pager.pdf`](docs/hearsay-one-pager.pdf)
 - Source code PDF: [`docs/hearsay-source-code.pdf`](docs/hearsay-source-code.pdf)
+- Regenerate both PDFs: `npm run export:pdfs` (needs Chrome; set `CHROME=/path/to/chrome` if `google-chrome` is not on PATH)
 - Data provenance and limitations: [`docs/PROVENANCE.md`](docs/PROVENANCE.md)
 
 ![Family board](docs/screenshots/07-family-board.png)
@@ -66,7 +67,7 @@ Regenerating the speech (`npm run stimuli`) needs an `ELEVENLABS_API_KEY`; the g
 
 ## AI use
 
-Built with the Devin AI coding agent, directed and reviewed by Sharon Basovich. ElevenLabs TTS was used once, offline, to generate the speech assets and demo narration; the live site makes no API calls. No sponsor APIs are used. Details: [docs/PROVENANCE.md](docs/PROVENANCE.md#ai-use-disclosure).
+AI-assisted: the code, tests and docs were generated with the Devin AI coding agent (Cognition) for Sharon Basovich's UnivaBio entry. ElevenLabs TTS was used once, offline, to generate the speech assets and demo narration; the live site makes no API calls. No sponsor APIs are used. Details: [docs/PROVENANCE.md](docs/PROVENANCE.md#ai-use-disclosure).
 
 ## License
 

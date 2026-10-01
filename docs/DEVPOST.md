@@ -72,7 +72,7 @@ A small ethics-approved pilot against a calibrated clinical digits-in-noise test
 
 UnivaBio encourages AI assistants, so here's exactly what I used:
 
-- **Devin (Cognition's AI coding agent)** wrote most of the code, tests, docs, screenshots and this demo video, working from my direction and review. The source is organized around the Bayesian engine (`src/engine/bayes.ts`), the family comparison (`src/engine/family.ts`), and the noise and mixing DSP (`src/dsp`, `src/audio/mix.ts`); I will review these modules before judging.
+- **Devin (Cognition's AI coding agent)** generated most of the code, tests, docs, screenshots and this demo video. The source is organized around the Bayesian engine (`src/engine/bayes.ts`), the family comparison (`src/engine/family.ts`), and the noise and mixing DSP (`src/dsp`, `src/audio/mix.ts`).
 - **ElevenLabs text-to-speech** was used once, offline, to record the nine digits and the hear-through sentence (`scripts/make-stimuli.ts`, `public/stimuli/manifest.json`), plus the demo-video narration. **The live site makes no ElevenLabs or other API calls**; it only plays the pre-generated files. No sponsor API is used, and none is required by the rules.
 - **The "AI" inside Hearsay** is Bayesian active learning that runs entirely in your browser: a posterior over threshold and slope, where each trial is chosen to maximize expected information. There is no LLM and no trained model at runtime.
 

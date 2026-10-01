@@ -15,7 +15,7 @@
 
 ## AI use disclosure
 
-- **Coding assistant:** the code, tests, docs, screenshots and demo video were produced with the Devin AI coding agent (Cognition), directed and reviewed by Sharon Basovich. UnivaBio explicitly encourages AI assistants.
+- **Coding assistant:** the code, tests, docs, screenshots and demo video were generated with the Devin AI coding agent (Cognition) for Sharon Basovich's UnivaBio entry. UnivaBio explicitly encourages AI assistants.
 - **ElevenLabs:** used once, offline, via `scripts/make-stimuli.ts` (model `eleven_multilingual_v2`, premade voice `Xb7hH8MSUJpSbSDYk0k2`; see `public/stimuli/manifest.json`), for the digits, the hear-through sentence, and the demo-video narration. The deployed site does **not** call ElevenLabs or any other API.
 - **Sponsors:** no sponsor API or product (Momen, CodeCrafters, InterviewBuddy, Protoflow, Adaption Labs, Tin Computer) is used, and the rules do not require one.
 - **"AI" in the app:** Bayesian active-learning inference (grid posterior + expected-entropy stimulus choice), fully client-side. No trained ML model and no LLM at runtime.

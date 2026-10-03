@@ -55,18 +55,18 @@ function homeView(): void {
     `<section class="hero">
       <p class="eyebrow">AI for Human Health · UnivaBio 2026</p>
       <h1>“What?” is the most expensive word at dinner.</h1>
-      <p class="lead">People often wait years between first noticing hearing trouble and doing anything about it — and the first thing to go is usually <b>understanding speech in noise</b>. Hearsay is a 3-minute, headphone-only check that measures exactly that, then tells you something you can actually act on: <b>does one person in your family struggle noticeably more than the others, on the same device?</b></p>
+      <p class="lead">Hearsay helps families explore <b>hearing spoken digits in noise</b> through a short, adaptive headphone task. See how the noise level changes with your answers, then compare task results collected on the same setup. <b>This educational prototype has not been clinically validated.</b></p>
       <div class="cta"><a class="btn primary" href="#/check">Start the 3-minute check</a><a class="btn" href="#/family">See the family board</a></div>
       <p class="fine">${DISCLAIMER}</p>
     </section>
     <section class="grid3">
       <article class="card"><h3>${ICONS.target} Adaptive, not a quiz</h3><p>A Bayesian engine picks every next noise level to learn the most about you. In simulation it reaches a <b>~34% lower error than a classic staircase of the same length</b> and stops in about 12 triplets.</p></article>
-      <article class="card"><h3>${ICONS.headphones} Honest about your headphones</h3><p>Home tests can't know how loud your earbuds are. So Hearsay never pretends: it compares family members <b>on the same device</b>, where calibration errors cancel out.</p></article>
+      <article class="card"><h3>${ICONS.headphones} Honest about your headphones</h3><p>The comparison uses the <b>same device, headphones and volume</b> to reduce a shared device-offset problem under the model. Fit, attention, language and the listening environment can still differ. This does not calibrate the headphones or establish clinical validity.</p></article>
       <article class="card"><h3>${ICONS.ear} Hear through their ears</h3><p>An illustrative simulator lets the rest of the family hear why “just listen harder” doesn't work — and why speaking clearly beats speaking loudly.</p></article>
     </section>
     <section class="how">
       <h2>How the check works</h2>
-      <ol class="steps"><li><b>Volume</b><span>Set a comfortable level once.</span></li><li><b>Headphone check</b><span>A 30-second phase trick confirms you're really on headphones.</span></li><li><b>Digits in noise</b><span>Hear three digits in noise, type them. The noise adapts to you.</span></li><li><b>Compare</b><span>Save to the family board and see who's the outlier.</span></li></ol>
+      <ol class="steps"><li><b>Volume</b><span>Set a comfortable level once.</span></li><li><b>Headphone check</b><span>A brief tone task checks the headphone setup; it cannot verify equipment or calibrate listening levels.</span></li><li><b>Digits in noise</b><span>Hear three digits in noise, type them. The noise adapts to you.</span></li><li><b>Compare</b><span>Save and compare task results from the same setup, with uncertainty shown.</span></li></ol>
     </section>`,
   );
 }
@@ -254,7 +254,7 @@ function finish(st: CheckState, est: Estimate, trials: Trial[], verified: boolea
     <h2>${esc(st.name)}, your speech-in-noise threshold is <span class="big">${est.srt.toFixed(1)} dB SNR</span></h2>
     <p class="lead">That's the noise level where you'd catch about half of the digit triplets. <b>Lower (more negative) = better at hearing in noise.</b> 90% credible interval: ${est.lo90.toFixed(1)} to ${est.hi90.toFixed(1)} dB.</p>
     <div class="grid2"><div>${trackChart(trials)}<p class="fine">Green = got all three digits, red = missed. The engine moved the noise to where your answers were most informative.</p></div>
-    <div class="card"><h3>What does this mean?</h3><p>On its own, not much yet — and we won't pretend otherwise. Your earbuds and volume shift this number by an unknown amount, so Hearsay has <b>no fake “normal range”</b>.</p><p>What <i>is</i> meaningful: comparing people who used <b>this same device</b> (${sameDevice.length} saved so far), and comparing yourself over time.</p>
+    <div class="card"><h3>What does this mean?</h3><p>On its own, not much yet — and we won't pretend otherwise. Your earbuds and volume shift this number by an unknown amount, so Hearsay has <b>no fake “normal range”</b>.</p><p>You can explore differences between results collected on <b>this same setup</b> (${sameDevice.length} saved so far). Changes in fit, attention, language or environment can affect scores; these comparisons have not been clinically validated.</p>
     ${verified ? "" : `<p class="notice">Headphones were not verified — treat this result with extra caution.</p>`}</div></div>
     <div class="row"><button class="btn primary" id="save">Save to family board</button><a class="btn" href="#/check">Next person</a><button class="link" id="discard">Discard</button></div>
     <p class="fine">${DISCLAIMER}</p>
@@ -281,7 +281,7 @@ function familyView(): void {
     `<section class="panel">
       <p class="eyebrow">Same device, same headphones, same volume</p>
       <h2>Family board</h2>
-      <p class="lead">Home hearing checks can't calibrate your earbuds. Hearsay sidesteps that: everyone tested on the same setup is compared with the <b>median of everyone else</b>, so the device offset cancels. A gap is only flagged if it's larger than <b>3 dB</b> and larger than the measurement uncertainty.</p>
+      <p class="lead">Results collected on the same setup are compared with the <b>median of everyone else</b>. Under the model, this reduces a shared device-offset problem; fit, attention, language and environment can still affect the comparison. The prototype flags a gap above <b>3 dB</b> and its estimated uncertainty. This rule is an educational design choice, not a clinically validated threshold.</p>
       ${
         members.length
           ? groups

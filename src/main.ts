@@ -129,10 +129,10 @@ function headphoneStep(st: CheckState): void {
     main.innerHTML = `<section class="panel narrow">
       <p class="eyebrow">Step 3 of 4 · Headphone check (${i + 1}/${HEADPHONE_TRIALS})</p>
       <h2>Which tone was the quietest?</h2>
-      <p>Three low hums will play. One is softer. Over headphones this is easy; over speakers a phase trick fools you.</p>
+      <p>Three low hums will play. Choose the quietest. This tone task cannot verify equipment type or calibrate listening levels.</p>
       <button class="btn" id="play">▶ Play the three tones</button>
       <div class="choices">${[1, 2, 3].map((n) => `<button class="btn choice" data-c="${n - 1}" disabled>${n}</button>`).join("")}</div>
-      <button class="link" id="skip">Skip (results will be marked "headphones not verified")</button>
+      <button class="link" id="skip">Skip the tone task</button>
     </section>`;
     const choices = [...main.querySelectorAll<HTMLButtonElement>(".choice")];
     document.getElementById("play")!.onclick = async () => {
@@ -146,8 +146,8 @@ function headphoneStep(st: CheckState): void {
           i++;
           if (i < HEADPHONE_TRIALS) return trial();
           if (headphonePassed(correct)) return runTest(st, true);
-          main.innerHTML = `<section class="panel narrow"><h2>Hmm — that sounded like speakers</h2><p>You got ${correct}/${HEADPHONE_TRIALS}. The check relies on each ear hearing its own signal. Try wired headphones, then retry.</p>
-          <div class="row"><button class="btn primary" id="retry">Retry</button><button class="btn" id="anyway">Continue anyway (not verified)</button></div></section>`;
+          main.innerHTML = `<section class="panel narrow"><h2>Tone-task criterion not met</h2><p>You got ${correct}/${HEADPHONE_TRIALS}. This response pattern does not identify your equipment. You can retry the tone task or continue with that limitation noted.</p>
+          <div class="row"><button class="btn primary" id="retry">Retry</button><button class="btn" id="anyway">Continue without meeting the tone-task criterion</button></div></section>`;
           document.getElementById("retry")!.onclick = () => headphoneStep(st);
           document.getElementById("anyway")!.onclick = () => runTest(st, false);
         }),
@@ -169,6 +169,7 @@ function runTest(st: CheckState, verified = false): void {
   const render = () => {
     const est = proc.estimate();
     main.innerHTML = `<section class="panel test">
+      ${st.virtualSrt !== null ? `<p class="notice">Synthetic demo: responses and this result are simulated. No person’s hearing is assessed.</p>` : ""}
       <div class="testhead"><p class="eyebrow">Step 4 of 4 · Digits in noise · triplet ${trials.length + 1}</p><div class="meter"><span style="width:${Math.min(100, (trials.length / 14) * 100)}%"></span></div></div>
       <div class="testgrid">
         <div>
@@ -180,7 +181,7 @@ function runTest(st: CheckState, verified = false): void {
         <aside class="belief">
           <h3>What Hearsay believes right now</h3>
           ${posteriorChart(proc.marginal(), est)}
-          <p class="fine">Shaded band = 90% credible interval for your speech reception threshold (the noise level where you get half the triplets right). Current: <b>${est.srt.toFixed(1)} dB</b> ± ${est.sd.toFixed(1)}. Stops once the uncertainty is ±1.25 dB or less.</p>
+          <p class="fine">Shaded band = the model’s 90% credible interval for the task threshold. Current estimate: <b>${est.srt.toFixed(1)} dB SNR</b>; posterior SD: ${est.sd.toFixed(1)} dB. After at least 10 triplets, the run stops at SD ≤ 1.25 dB, or at 24 triplets.</p>
           ${trials.length ? trackChart(trials) : ""}
         </aside>
       </div>
@@ -251,11 +252,12 @@ function finish(st: CheckState, est: Estimate, trials: Trial[], verified: boolea
   const sameDevice = members.filter((m) => m.device.replace(" (headphones not verified)", "") === st.device);
   main.innerHTML = `<section class="panel">
     <p class="eyebrow">Done in ${trials.length} triplets</p>
-    <h2>${esc(st.name)}, your speech-in-noise threshold is <span class="big">${est.srt.toFixed(1)} dB SNR</span></h2>
-    <p class="lead">That's the noise level where you'd catch about half of the digit triplets. <b>Lower (more negative) = better at hearing in noise.</b> 90% credible interval: ${est.lo90.toFixed(1)} to ${est.hi90.toFixed(1)} dB.</p>
+    ${st.virtualSrt !== null ? `<p class="notice">Synthetic demo: responses and this result are simulated. No person’s hearing is assessed.</p>` : ""}
+    <h2>${esc(st.name)}, your model-estimated task threshold is <span class="big">${est.srt.toFixed(1)} dB SNR</span></h2>
+    <p class="lead">This estimates the signal-to-noise ratio around which the model predicts half the digit triplets will be correct. Lower values indicate better performance on this task, not a clinical hearing category. Model-based 90% credible interval: ${est.lo90.toFixed(1)} to ${est.hi90.toFixed(1)} dB.</p>
     <div class="grid2"><div>${trackChart(trials)}<p class="fine">Green = got all three digits, red = missed. The engine moved the noise to where your answers were most informative.</p></div>
-    <div class="card"><h3>What does this mean?</h3><p>On its own, not much yet — and we won't pretend otherwise. Your earbuds and volume shift this number by an unknown amount, so Hearsay has <b>no fake “normal range”</b>.</p><p>You can explore differences between results collected on <b>this same setup</b> (${sameDevice.length} saved so far). Changes in fit, attention, language or environment can affect scores; these comparisons have not been clinically validated.</p>
-    ${verified ? "" : `<p class="notice">Headphones were not verified — treat this result with extra caution.</p>`}</div></div>
+    <div class="card"><h3>What does this mean?</h3><p>Headphones, volume and listening conditions can affect this estimate. There is no clinical ‘normal range’ here.</p><p>You can explore differences between results collected on <b>this same setup</b> (${sameDevice.length} saved so far). Changes in fit, attention, language or environment can affect scores; these comparisons have not been clinically validated.</p>
+    ${verified ? "" : `<p class="notice">The tone task was skipped or its criterion was not met. This task never verifies equipment or calibrates listening levels.</p>`}</div></div>
     <div class="row"><button class="btn primary" id="save">Save to family board</button><a class="btn" href="#/check">Next person</a><button class="link" id="discard">Discard</button></div>
     <p class="fine">${DISCLAIMER}</p>
   </section>`;

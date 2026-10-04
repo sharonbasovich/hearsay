@@ -9,17 +9,17 @@ img { width:100%; border:1px solid #e7e0d5; border-radius:6px; } .fine { font-si
 .box { background:#fdeee8; border-radius:6px; padding:6px 8px; }
 </style></head><body>
 <h1>Hearsay</h1>
-<div class="tag">A 3-minute hearing-in-noise check that finds the family member quietly saying "what?" — UnivaBio 2026 · AI for Human Health · Sharon Basovich (solo)</div>
+<div class="tag">An educational speech-in-noise task with adaptive questions and a same-setup comparison board — UnivaBio 2026 · AI for Human Health · Sharon Basovich (solo)</div>
 <div class="cols"><div>
 <h2>Problem</h2>
 <p>Understanding speech in noise is often the first hearing ability to slip, and people often wait years before acting. Online hearing tests usually skip speech-in-noise, and they can't know how loud your headphones are — yet many still report a "normal" range.</p>
 <h2>Solution</h2>
 <ul><li><b>Digits-in-noise check</b>: hear 3 spoken digits in speech-shaped noise, type them; antiphasic presentation; a headphone check first.</li>
-<li><b>Bayesian adaptive engine</b> (the AI): posterior over threshold × slope; each next noise level minimizes expected posterior entropy; stops when the 90% credible interval is tight (~12 triplets).</li>
-<li><b>Same-device family board</b>: compares each person with the median of others on the same device, so calibration offsets cancel. Flags only gaps &gt; 3 dB <i>and</i> beyond measurement uncertainty.</li>
+<li><b>Bayesian adaptive engine</b> (the AI): posterior over threshold × slope; each next noise level minimizes expected posterior entropy; stops after at least 10 triplets when posterior SD is ≤1.25 dB, or at 24 triplets (11.8 on average in the simulated evaluation).</li>
+<li><b>Same-device family board</b>: compares task results with the median of others on the same setup. A shared offset cancels under the model; real-world differences remain. The &gt;3 dB flagging rule and comparisons are educational design choices, not clinically validated.</li>
 <li><b>Hear-through simulator</b> and a reproducible in-browser <b>Lab</b>.</li></ul>
 <h2>Audience &amp; impact</h2>
-<p>Families and caregivers of older adults, and students exposed to loud music. The output is actionable and non-alarming: "found it noticeably harder than others on this device — worth mentioning to a doctor."</p>
+<p>Designed for families and adult learners exploring speech in noise. The intended value is making an adaptive listening task and its uncertainty easier to understand. Benefit to real users has not yet been evaluated.</p>
 <h2>Measured results (simulated listeners, n=400, tested twice)</h2>
 <table><tr><th>Procedure</th><th>Triplets</th><th>RMSE</th><th>90% CI coverage</th></tr>
 <tr><td>Staircase, 24 trials</td><td>24</td><td>0.79 dB</td><td>62%</td></tr>

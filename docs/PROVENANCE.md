@@ -15,6 +15,8 @@
 
 ## AI use disclosure
 
+The original demo narration used ElevenLabs TTS. The replacement narrated demo uses offline Kokoro Heart; existing digit/sentence audio is unchanged.
+
 - **Coding assistant:** the code, tests, docs, screenshots and demo video were generated with the Devin AI coding agent (Cognition) for Sharon Basovich's UnivaBio entry. UnivaBio explicitly encourages AI assistants.
 - **ElevenLabs:** used once, offline, via `scripts/make-stimuli.ts` (model `eleven_multilingual_v2`, premade voice `Xb7hH8MSUJpSbSDYk0k2`; see `public/stimuli/manifest.json`), for the digits, the hear-through sentence, and the demo-video narration. The deployed site does **not** call ElevenLabs or any other API.
 - **Sponsors:** no sponsor API or product (Momen, CodeCrafters, InterviewBuddy, Protoflow, Adaption Labs, Tin Computer) is used, and the rules do not require one.
@@ -32,7 +34,7 @@
 2. **Uncalibrated audio.** Absolute thresholds depend on the device, headphones and volume. Hearsay therefore only compares people on the same set-up, and assumes nobody changes the volume.
 3. **Model assumptions.** The engine assumes a logistic psychometric function, 3% lapses, and marginalizes over three slopes (0.4, 0.7, 1.1 /dB). The Lab shows accuracy drops when the true slope is shallower (RMSE 1.41 dB at 0.5 /dB).
 4. **Synthetic speech.** The digits are TTS, RMS-equalized but not individually balanced for intelligibility in noise the way clinical digit sets are. Some digits may be easier than others.
-5. **Headphone check** (antiphase-tone method) reduces but does not eliminate loudspeaker use; users can skip it, and results are then labelled "headphones not verified".
+5. **Tone setup task:** an antiphase-tone task is included, but it cannot establish equipment type or calibrate listening levels. Users may skip it. Older saved records retain the historical ‘headphones not verified’ label; that label is not evidence of equipment verification.
 6. **Hear-through simulator** uses peaking filters only. Real hearing loss also changes loudness growth, frequency resolution and timing.
 7. **Population.** Not designed for children, and not suitable for anyone for whom sound exposure is uncomfortable.
 8. **Language.** English digits only.

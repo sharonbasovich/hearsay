@@ -1,0 +1,45 @@
+name: Capture synthetic demo (manual)
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  capture:
+    if: github.repository == 'sharonbasovich/hearsay'
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Record exact product snapshot
+        run: |
+          mkdir -p demo-capture
+          git rev-parse HEAD > demo-capture/source-commit.txt
+          git diff --exit-code 695c5cefe169b0b0ab5fed5fe969a4f224c60842 HEAD -- src tests index.html package.json package-lock.json vite.config.ts tsconfig.json
+          git diff --name-only 695c5cefe169b0b0ab5fed5fe969a4f224c60842 HEAD > demo-capture/changed-paths.txt
+          git ls-files -z src tests index.html package.json package-lock.json vite.config.ts tsconfig.json | xargs -0 sha256sum > demo-capture/source-sha256.txt
+          git status --porcelain > demo-capture/source-status.txt
+      - run: npm ci
+      - run: npm test
+      - run: npm run build
+      - name: Install isolated capture tooling
+        run: |
+          npm install --no-save --package-lock=false playwright@1.58.2
+          npx playwright install --with-deps chromium
+      - name: Capture genuine synthetic UI
+        run: |
+          npm run preview -- --host 127.0.0.1 > /tmp/hearsay-preview.log 2>&1 &
+          for i in $(seq 1 30); do curl -fsS http://127.0.0.1:4173/ >/dev/null && break; sleep 1; done
+          node scripts/capture-demo.mjs
+          git diff --exit-code -- src tests index.html package.json package-lock.json vite.config.ts tsconfig.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: hearsay-synthetic-demo-capture
+          path: demo-capture/
+          retention-days: 7

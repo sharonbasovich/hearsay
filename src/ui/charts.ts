@@ -22,7 +22,7 @@ export function posteriorChart(marginal: { srt: number; p: number }[], est?: { l
   const band = est
     ? `<rect x="${x(est.lo90)}" y="10" width="${Math.max(2, x(est.hi90) - x(est.lo90))}" height="${H - 35}" class="band"/><line x1="${x(est.srt)}" x2="${x(est.srt)}" y1="10" y2="${H - 25}" class="mean"/>`
     : "";
-  return `<svg viewBox="0 0 ${W} ${H}" class="chart" role="img" aria-label="Belief about your speech reception threshold">
+  return `<svg viewBox="0 0 ${W} ${H}" class="chart" role="img" aria-label="Belief about the model-estimated task threshold">
     ${band}<path d="${area}" class="area"/><path d="${path}" class="line"/>
     <line x1="30" x2="${W - 20}" y1="${H - 25}" y2="${H - 25}" class="axis"/>${ticks.join("")}
     <text x="${W - 20}" y="${H - 30}" class="tick" text-anchor="end">SNR (dB) →</text>

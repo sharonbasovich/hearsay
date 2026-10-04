@@ -9,7 +9,7 @@ Home headphones are not calibrated, so Hearsay **does not show a clinical ‘nor
 **Hearsay is not a medical device and does not diagnose anything.** It has not been clinically validated.
 
 - Live demo: https://sharonbasovich.github.io/hearsay/ (or run locally, below)
-- Demo video (2:20): watch at https://sharonbasovich.github.io/hearsay/video/ (source file: [`docs/hearsay-demo.mp4`](docs/hearsay-demo.mp4))
+- Current demo video (1:52): https://sharonbasovich.github.io/hearsay/video/ . Original recording retained for history: [`docs/hearsay-demo.mp4`](docs/hearsay-demo.mp4).
 - Devpost write-up: [`docs/DEVPOST.md`](docs/DEVPOST.md)
 - One-page summary: [`docs/hearsay-one-pager.pdf`](docs/hearsay-one-pager.pdf)
 - Source code PDF: [`docs/hearsay-source-code.pdf`](docs/hearsay-source-code.pdf)
@@ -66,6 +66,8 @@ npm run simulate   # regenerates docs/validation.json
 Regenerating the speech (`npm run stimuli`) needs an `ELEVENLABS_API_KEY`; the generated WAVs are already committed.
 
 ## AI use
+
+The original demo narration used ElevenLabs TTS. The replacement narrated demo uses offline Kokoro Heart; existing digit/sentence audio is unchanged.
 
 AI-assisted: the code, tests and docs were generated with the Devin AI coding agent (Cognition) for Sharon Basovich's UnivaBio entry. ElevenLabs TTS was used once, offline, to generate the speech assets and demo narration; the live site makes no API calls. No sponsor APIs are used. Details: [docs/PROVENANCE.md](docs/PROVENANCE.md#ai-use-disclosure).
 

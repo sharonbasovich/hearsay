@@ -33,6 +33,7 @@ try {
   await page.getByRole('link', { name: 'Watch a virtual listener take the check', exact: true }).waitFor();
   await mark('02-lab-entry', 6);
   await page.getByRole('link', { name: 'Watch a virtual listener take the check', exact: true }).click();
+  await page.locator('#name').waitFor();
   assert.match(await body(), /Results are simulated/);
   assert.equal(await page.locator('#name').inputValue(), 'Virtual listener');
   assert.equal(await page.locator('#device').inputValue(), 'Simulated');
@@ -62,6 +63,7 @@ try {
   await writeFile(`${out}/virtual-result.txt`, await body());
   // No result is saved to a family board. Only the built-in simulation follows.
   await page.getByRole('link', { name: 'Lab', exact: true }).click();
+  await page.locator('#n').waitFor();
   assert.equal(await page.locator('#n').inputValue(), '400');
   assert.equal(await page.locator('#slope').inputValue(), '0.7');
   await mark('06-lab-settings', 6);
@@ -75,6 +77,7 @@ try {
   await mark('07-lab-results', 32);
   await writeFile(`${out}/lab-result.txt`, await body());
   await page.getByRole('link', { name: 'Honesty', exact: true }).click();
+  await page.getByRole('heading', { name: "What's real, what's synthetic, what's missing", exact: true }).waitFor();
   await mark('08-honesty', 5);
   assert.deepEqual(errors, [], 'Unexpected browser errors');
   await writeFile(`${out}/ui-verification.txt`, 'Verified corrected copy; built-in virtual-listener entry; automatic genuine response/posterior/track updates; synthetic result; default400/slope0.7 simulation and expected RMSE cells. No human responses, saved result, permissions or product state injection. App audio must be omitted from the narrated final edit.\n');

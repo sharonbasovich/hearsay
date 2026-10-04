@@ -2,9 +2,9 @@
 
 > "What?" is the most expensive word at dinner.
 
-Hearsay is a browser-based **educational self-check** of how well you understand speech in noise — the ability that usually slips first when hearing starts to change. You hear three spoken digits in noise, type them, and a **Bayesian adaptive engine** picks the next noise level to learn the most from every answer. It stops after about 12 triplets.
+Hearsay is a browser-based **educational listening task** exploring speech in noise. You hear three spoken digits in noise, type them, and a **Bayesian adaptive engine** picks the next noise level based on its model of your answers. In the simulated-listener evaluation, it stopped after about 12 triplets on average.
 
-Because home headphones are never calibrated, Hearsay **does not show a fake "normal range"**. Instead, it compares family members **on the same device and headphones**, where device offsets cancel, and gently flags anyone who found it noticeably harder than everyone else.
+Home headphones are not calibrated, so Hearsay **does not show a clinical ‘normal range’**. Its family board compares task results **on the same device, headphones and volume**. A shared device offset cancels mathematically under the comparison model; fit, attention, language and environment can still differ. The comparisons and flagging threshold have not been clinically validated.
 
 **Hearsay is not a medical device and does not diagnose anything.** It has not been clinically validated.
 
